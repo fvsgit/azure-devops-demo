@@ -3,7 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-trigger:
+pr:
 - master
 
 pool:
@@ -17,19 +17,6 @@ steps:
     ls
   displayName: 'List dir'
 
-- task: SonarQubePrepare@4
-  inputs:
-    SonarQube: 'DBAG Sonar'
-    scannerMode: 'MSBuild'
-    projectKey: 'sap.crm-devopsdemo'
-    projectName: 'sap.crm-devopsdemo'
-
-- task: SonarQubeAnalyze@4
-
-- task: SonarQubePublish@4
-  inputs:
-    pollingTimeoutSec: '300'
-    
 - task: Npm@1
   inputs:
     command: 'install'
