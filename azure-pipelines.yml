@@ -2,7 +2,7 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
-
+ 
 pr:
   autoCancel: true
   branches:
@@ -11,15 +11,18 @@ pr:
 
 pool:
   vmImage: 'ubuntu-latest'
-
+ 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    ls
-  displayName: 'List dir'
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '17.09.0-ce'
 
+- task: CmdLine@2
+  inputs:
+    script: |
+      docker run -v "${PWD}":/project --rm ppiper/mta-archive-builder mtaBuild --version
+      
 - task: Npm@1
   inputs:
     command: 'install'
