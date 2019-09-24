@@ -14,6 +14,15 @@ pool:
  
 steps:
 
+- script: dir
+  workingDirectory: $(Agent.BuildDirectory)/src
+  displayName: Create src
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      ls
+
 - task: DockerInstaller@0
   inputs:
     dockerVersion: '17.09.0-ce'
@@ -22,4 +31,4 @@ steps:
   inputs:
     script: |
       ls
-      docker run --rm -v "${PWD}":. -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target NEO build
+      docker run --rm -v "${PWD}":$(Agent.BuildDirectory)/src -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target NEO build
