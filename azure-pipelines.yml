@@ -18,6 +18,5 @@ steps:
     path: src
   - task: CmdLine@2
     inputs:
-      script: |
-        ls
-        ls src/
+      script: | 
+        ls ../
