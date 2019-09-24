@@ -21,6 +21,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
+      mkdir .mta
       docker run -v "${PWD}":/project --rm ppiper/mta-archive-builder mtaBuild --version
       
 - task: Npm@1
