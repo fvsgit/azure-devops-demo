@@ -21,17 +21,5 @@ steps:
 - task: CmdLine@2
   inputs:
     script: |
-      docker run --rm -v `pwd`:/data -w /data ppiper/mta-archive-builder mtaBuild --version
-      
-- task: Npm@1
-  inputs:
-    command: 'install'
-
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
-
-- script: |
-    ls dist/
-  displayName: 'List dir'
+      ls
+      docker run --rm -v "${PWD}":. -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target NEO build
