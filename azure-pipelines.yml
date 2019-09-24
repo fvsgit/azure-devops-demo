@@ -11,24 +11,13 @@ pr:
 
 pool:
   vmImage: 'ubuntu-latest'
- 
+
 steps:
-
-- script: dir
-  workingDirectory: $(Agent.BuildDirectory)/src
-  displayName: Create src
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      ls
-
-- task: DockerInstaller@0
-  inputs:
-    dockerVersion: '17.09.0-ce'
-
-- task: CmdLine@2
-  inputs:
-    script: |
-      ls
-      docker run --rm -v "${PWD}":$(Agent.BuildDirectory)/src -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target NEO build
+  - checkout: self
+    clean: true
+    path: src
+  - task: CmdLine@2
+    inputs:
+      script: |
+        ls
+        ls src/
