@@ -27,5 +27,5 @@ steps:
     customCommand: 'run build'
 
 - script: |
-    ls
+    ls dist/
   displayName: 'List dir'
