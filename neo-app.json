@@ -1,0 +1,56 @@
+{
+  "welcomeFile": "/webapp/index.html",
+  "routes": [
+    {
+      "path": "dbag/zep/lib",
+      "target": {
+        "type": "application",
+        "name": "crmzeplibary",
+        "entryPath": "/"
+      },
+      "description": "DBAG UI5 Lib"
+    },
+    {
+      "path": "/resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/resources"
+      },
+      "description": "SAPUI5 Resources"
+    },
+    {
+      "path": "/test-resources",
+      "target": {
+        "type": "service",
+        "name": "sapui5",
+        "entryPath": "/test-resources"
+      },
+      "description": "SAPUI5 Test Resources"
+    },
+    {
+      "path": "/sap/opu/odata",
+      "target": {
+        "type": "destination",
+        "name": "crm7",
+        "entryPath": "/sap/opu/odata"
+      },
+      "description": "crm7"
+    }, {
+		"path": "/UserInformation",
+		"target": {
+			"type": "destination",
+			"name": "custportalservices",
+			"entryPath": "/framework/UserInformation"
+		}
+	}, {
+		"path": "/customerportal",
+		"target": {
+			"type": "destination",
+			"name": "custportalservices",
+			"entryPath": "/odataproxy/customerportal"
+		}
+	}
+  ],
+  "sendWelcomeFileRedirect": true
+}

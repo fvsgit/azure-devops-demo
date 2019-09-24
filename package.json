@@ -1,0 +1,29 @@
+{
+  "name": "crmexasuidmapploverview",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
+    "@babel/plugin-transform-destructuring": "^7.5.0",
+    "@babel/plugin-transform-spread": "^7.2.2",
+    "@babel/preset-env": "^7.5.5",
+    "@sap/ui5-builder-webide-extension": "^1.0.4",
+    "@ui5/cli": "^1.4.3",
+    "dotenv": "^8.1.0",
+    "request": "^2.88.0",
+    "ui5-middleware-livereload": "*"
+  },
+  "scripts": {
+    "start": "ui5 serve",
+    "build": "ui5 build --include-task=generateManifestBundle generateCachebusterInfo"
+  },
+  "ui5": {
+    "dependencies": [
+      "@sap/ui5-builder-webide-extension",
+      "ui5-middleware-livereload"
+    ]
+  }
+}

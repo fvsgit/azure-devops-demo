@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="onConfirmFilter" resetFilters="onResetFilters" class="{= ${device>/system/desktop} ? 'sapUiSizeCompact' : ''}">
+		<filterItems>
+			<ViewSettingsCustomItem text="{i18n>labelReferenceId}" key="Objectid">
+				<customControl>
+					<Input id="idFilterItemReferenceId" maxLength="10" />
+				</customControl>
+			</ViewSettingsCustomItem>
+			<ViewSettingsCustomItem text="{i18n>labelName}" key="OwnerName">
+				<customControl>
+					<Input id="idFilterItemName" maxLength="40" />
+				</customControl>
+			</ViewSettingsCustomItem>
+			<ViewSettingsCustomItem text="{i18n>labelCreatedAt}" key="CreatedAt">
+				<customControl>
+					<DatePicker id="idFilterItemCreatedAt" />
+				</customControl>
+			</ViewSettingsCustomItem>
+		</filterItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

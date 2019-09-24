@@ -1,0 +1,67 @@
+<mvc:View
+	controllerName="crm.exas.uidm.apploverview.controller.Main"
+	xmlns:semantic="sap.f.semantic"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core"
+	xmlns="sap.m">
+	<semantic:SemanticPage headerPinnable="false" toggleHeaderOnTitleClick="false" showFooter="true">
+		<semantic:titleHeading>
+			<Title text="{i18n>appTitle}" />
+		</semantic:titleHeading>
+		<semantic:content>
+			<IconTabBar id="iconTabBar" expandable="false" headerBackgroundDesign="Transparent" select="onQuickFilter">
+				<items>
+					<IconTabFilter
+						key="all"
+						showAll="true"
+						count="{view>/countAll}"
+						text="{i18n>labelAll}" />
+					<IconTabSeparator/>
+					<IconTabFilter
+						key="2"
+						icon="sap-icon://status-in-process"
+						iconColor="Critical"
+						text="{i18n>labelStatusInProgress}"
+						count="{view>/countInProgress}" />
+					<IconTabFilter
+						key="3"
+						icon="sap-icon://status-completed"
+						iconColor="Positive"
+						text="{i18n>labelStatusCompleted}"
+						count="{view>/countCompleted}" />
+				</items>
+				<content>
+					<Table
+						id="idResultTable"
+						mode="SingleSelectLeft"
+						selectionChange="onTableSelectionChange"
+						growing="true" 
+						growingScrollToLoad="true" 
+						growingThreshold="20"
+						updateFinished="onUpdateFinished">
+						<headerToolbar>
+							<Toolbar>
+								<Title text="{i18n>titleAdmissionList}" />
+								<ToolbarSpacer />
+								<Button icon="sap-icon://sort" press=".onPressActionButton('admissionSort')" tooltip="{i18n>tooltipSort}" />
+								<Button icon="sap-icon://filter" press=".onPressActionButton('admissionFilter')" tooltip="{i18n>tooltipFilter}" />
+							</Toolbar>
+						</headerToolbar>
+						<columns>
+							<Column><Text text="{i18n>labelReferenceId}"/></Column>
+							<Column><Text text="{i18n>labelName}"/></Column>
+							<Column><Text text="{i18n>labelApplicationType}"/></Column>
+							<Column><Text text="{i18n>labelApplicationStatus}"/></Column>
+							<Column><Text text="{i18n>labelMemberId}"/></Column>
+							<Column><Text text="{i18n>labelCreatedAt}"/></Column>
+						</columns>
+					</Table>
+				</content>
+			</IconTabBar>
+		</semantic:content>
+		<semantic:footerCustomActions>
+			<Button text="{i18n>buttonTextDisplay}" press="onPressDisplay" enabled="{view>/displayButtonEnabled}" />
+			<Button text="{i18n>buttonTextPrint}" press="onPressPrint" enabled="{view>/printButtonEnabled}" />
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>

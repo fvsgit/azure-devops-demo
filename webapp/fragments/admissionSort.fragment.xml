@@ -1,0 +1,14 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog confirm="onConfirmSort" class="{= ${device>/system/desktop} ? 'sapUiSizeCompact' : ''}">
+		<sortItems>
+			<ViewSettingsItem text="{i18n>labelReferenceId}" key="Objectid" selected="true" />
+			<ViewSettingsItem text="{i18n>labelName}" key="CompanyName" />
+			<ViewSettingsItem text="{i18n>labelApplicationType}" key="AdmissionRequestType/ProductId" />
+			<ViewSettingsItem text="{i18n>labelApplicationStatus}" key="StatusTxt" />
+			<ViewSettingsItem text="{i18n>labelMemberId}" key="ContactPartner" />
+			<ViewSettingsItem text="{i18n>labelCreatedAt}" key="CreatedAt" />
+		</sortItems>
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

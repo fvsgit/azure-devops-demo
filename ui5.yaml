@@ -1,0 +1,61 @@
+specVersion: '1.0'
+metadata:
+  name: crmexasuidmapploverview
+type: application # either application, library or module
+builder:
+  customTasks:
+    - name: webide-extension-task-updateNeoApp
+      afterTask: generateVersionInfo
+      configuration: # task specific configuration
+        destDir: dist
+        appFolder: webapp
+        nameSpace: test/namespace
+    - name: webide-extension-task-updateManifestJson
+      afterTask: webide-extension-task-updateNeoApp
+      configuration: # task specific configuration
+        appFolder: webapp
+        destDir: dist
+    - name: webide-extension-task-lint
+      afterTask: webide-extension-task-updateManifestJson
+      configuration: # task specific configuration
+        destDir: dist
+        appFolder: webapp
+        nameSpace: test/namespace
+    - name: webide-extension-task-resources
+      afterTask: webide-extension-task-lint
+      configuration: # task specific configuration
+        nameSpace: test/namespace
+    - name: transpile-babel
+      beforeTask: generateComponentPreload
+server:
+  customMiddleware:
+  - name: ui5-middleware-livereload
+    afterMiddleware: compression
+    configuration:
+      debug: true
+      ext: "xml,json,properties"
+      port: 35729
+      path: "webapp"
+  - name: proxyHandler
+    beforeMiddleware: serveResources
+
+---
+# babel task configuration
+specVersion: '1.0'
+kind: extension
+type: task
+metadata:
+  name: transpile-babel
+task:
+  path: lib/tasks/transpile-babel.js
+
+---
+# proxy middleware configuration
+specVersion: '1.0'
+kind: extension
+type: server-middleware
+metadata:
+  name: proxyHandler
+middleware:
+  path: lib/middleware/proxy.js
+  
