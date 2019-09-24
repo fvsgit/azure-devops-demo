@@ -25,3 +25,7 @@ steps:
   inputs:
     command: 'custom'
     customCommand: 'run build'
+
+- script: |
+    ls
+  displayName: 'List dir'
