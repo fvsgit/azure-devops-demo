@@ -25,4 +25,4 @@ steps:
       dockerVersion: '17.09.0-ce'
   - task: CmdLine@2
     inputs:
-      script: 'docker run --rm -v "${PWD}":../src/ -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target NEO build'
+      script: 'docker run --rm -v "${PWD}":"../src/" -it ppiper/mta-archive-builder:latest mtaBuild --mtar dummy.mtar --build-target NEO build'
