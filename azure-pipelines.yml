@@ -7,3 +7,8 @@ pool:
   vmImage: 'ubuntu-16.04'
   
 container: mcr.microsoft.com/dotnet/core/sdk:2.2
+
+steps:
+  - task: CmdLine@2
+    inputs:
+      script: 'docker search microsoft'
