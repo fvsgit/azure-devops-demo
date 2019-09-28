@@ -11,6 +11,10 @@ steps:
     inputs:
       dockerVersion: '17.09.0-ce'
   
-  
+  - task: CmdLine@2
+    inputs:
+      script: |
+        whereis docker
+        ls /usr/lib/docker/
   
 
