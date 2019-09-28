@@ -23,4 +23,8 @@ steps:
 
   - task: CmdLine@2
     inputs:
-      script: 'ls lib/'
+      script: 'docker images'
+  
+  - task: CmdLine@2
+    inputs:
+      script: 'ls -la'
