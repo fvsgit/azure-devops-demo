@@ -9,12 +9,11 @@ pool:
 container: mcr.microsoft.com/dotnet/core/sdk:2.2
 
 steps:
+- task: DockerInstaller@0
+  inputs:
+    dockerVersion: '17.09.0-ce'
 
   - task: CmdLine@2
     inputs:
-      script: 'ls /usr/bin/docker'
-      
-  - task: CmdLine@2
-    inputs:
-      script: 'docker search microsoft'
+      script: 'whereis docker'
 
