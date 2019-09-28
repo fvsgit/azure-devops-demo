@@ -15,6 +15,6 @@ steps:
       script: docker pull tomcat
   - task: CmdLine@2
     inputs:
-      script: ls /usr/lib/docker/
+      script: ls /var/lib/docker/
   
 
