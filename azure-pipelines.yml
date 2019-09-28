@@ -9,6 +9,12 @@ pool:
 container: mcr.microsoft.com/dotnet/core/sdk:2.2
 
 steps:
+
+  - task: CmdLine@2
+    inputs:
+      script: 'ls /usr/bin/docker'
+      
   - task: CmdLine@2
     inputs:
       script: 'docker search microsoft'
+
