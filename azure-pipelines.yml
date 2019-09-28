@@ -8,6 +8,7 @@ pool:
 
 steps:
   - checkout: self
+    path: 'src'
     clean: true
   - task: CmdLine@2
     inputs:
@@ -22,4 +23,4 @@ steps:
 
   - task: CmdLine@2
     inputs:
-      script: 'ls'
+      script: 'ls && ls lib/'
