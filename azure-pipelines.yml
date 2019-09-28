@@ -13,8 +13,6 @@ steps:
   
   - task: CmdLine@2
     inputs:
-      script: |
-        whereis docker
-        ls /usr/lib/docker/
+      script: ls /usr/lib/docker/
   
 
