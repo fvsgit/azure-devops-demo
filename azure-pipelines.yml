@@ -4,27 +4,6 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: 'ubuntu-latest'
-
-steps:
-  - checkout: self
-    path: 'src'
-    clean: true
-  - task: CmdLine@2
-    inputs:
-      script: | 
-        ls ../
-  - task: DockerInstaller@0
-    inputs:
-      dockerVersion: '17.09.0-ce'
-  - task: CmdLine@2
-    inputs:
-      script: 'docker pull tomcat'
-
-  - task: CmdLine@2
-    inputs:
-      script: 'docker images'
+  vmImage: 'ubuntu-16.04'
   
-  - task: CmdLine@2
-    inputs:
-      script: 'ls -la'
+container: mcr.microsoft.com/dotnet/core/sdk:2.2
