@@ -6,15 +6,9 @@
 pool:
   name: 'SAPUI5' 
 
-steps:
-  - task: DockerInstaller@0
-    inputs:
-      dockerVersion: '17.09.0-ce'
+steps: 
   - task: CmdLine@2
     inputs:
-      script: docker pull tomcat
-  - task: CmdLine@2
-    inputs:
-      script: ls /var/lib/docker/
+      script: ls
   
 
