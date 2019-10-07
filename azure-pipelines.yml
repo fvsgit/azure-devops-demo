@@ -8,6 +8,9 @@ pool:
 
 steps: 
   
+  - task: DockerInstaller@0
+    inputs:
+      dockerVersion: '17.09.0-ce'
   - task: Docker@2
     inputs:
       containerRegistry: 'FVS Docker`'
