@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 pool:
-  name: 'agent-002' 
+  name: 'SAPUI5' 
 
 steps: 
   - task: CmdLine@2
