@@ -10,13 +10,6 @@ steps:
   
   - task: DockerInstaller@0
     inputs:
-      dockerVersion: '17.09.0-ce'
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'FVS Docker`'
-      command: 'login'
-  - task: CmdLine@2
-    inputs:
-      script: docker pull tomcat
+      dockerVersion: '17.09.0-ce' 
   
 
