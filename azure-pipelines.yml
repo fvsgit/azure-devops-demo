@@ -10,5 +10,5 @@ steps:
 
   - task: CmdLine@2
     inputs:
-      script: 'sudo docker pull tomcat'
+      script: 'docker pull ppiper/mta-archive-builder'
 
