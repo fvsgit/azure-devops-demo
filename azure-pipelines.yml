@@ -4,11 +4,11 @@
 # https://aka.ms/yaml
 
 pool:
-  name: 'dev-vms' 
+  name: 'SAPUI5' 
 
 steps: 
 
   - task: CmdLine@2
     inputs:
-      script: 'docker pull ppiper/mta-archive-builder'
+      script: 'docker run hello-world'
 
