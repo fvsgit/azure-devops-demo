@@ -4,9 +4,9 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: "win1803"
+  name: "SAPUI5"
 
-container: win1803
+container: mcr.microsoft.com/windows/servercore:1803
 
 steps: 
 
