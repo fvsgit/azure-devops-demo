@@ -8,7 +8,32 @@ pool:
 
 steps: 
 
-  - task: CmdLine@2
-    inputs:
-      script: 'docker run hello-world'
 
+- task: AzurePowerShell@4
+  inputs:
+    azureSubscription: 'CorpSystemsRM'
+    ScriptType: 'InlineScript'
+    Inline: |
+      $resourceGroupName ='rg-corpit-dev'
+      $snapshotName = 'win-dev-os-setup'
+      $diskName = 'win-dev-pipeline-test'
+      $diskSize = '200'
+      $storageType = 'Standard_LRS'
+      $location = 'westeurope'
+      Select-AzureRmSubscription -SubscriptionId '915d1155-a8ae-4dee-857a-ca556da38db2'
+      $snapshot = Get-AzureRmSnapshot -ResourceGroupName $resourceGroupName -SnapshotName $snapshotName
+      $disk = New-AzureRmDiskConfig -AccountType $storageType -Location $location -CreateOption Copy -SourceResourceId $snapshot.Id
+      New-AzureRmDisk -Disk $disk -ResourceGroupName $resourceGroupName -DiskName $diskName
+      $virtualNetworkName = 'vnet-corpsystems-dev'
+      $virtualMachineName = 'win-dev-pipeline-test'
+      $virtualMachineSize = 'Standard_D4_v3'
+      $VirtualMachine = New-AzureRmVMConfig -VMName $virtualMachineName -VMSize $virtualMachineSize
+      $diskId = '/subscriptions/915d1155-a8ae-4dee-857a-ca556da38db2/resourceGroups/rg-corpit-dev/providers/Microsoft.Compute/disks/win-dev-pipeline-test'
+      $VirtualMachine = Set-AzureRmVMOSDisk -VM $VirtualMachine -ManagedDiskId $diskId -CreateOption Attach -Windows
+      $vnet = Get-AzureRmVirtualNetwork -Name $virtualNetworkName -ResourceGroupName rg-corpsystems-dev-network
+      $subnetId = '/subscriptions/915d1155-a8ae-4dee-857a-ca556da38db2/resourceGroups/rg-corpsystems-dev-network/providers/Microsoft.Network/virtualNetworks/vnet-corpsystems-dev/subnets/private'
+      $nic = New-AzureRmNetworkInterface -Name win-dev-pipeline-test-nic -ResourceGroupName $resourceGroupName -Location $snapshot.Location -SubnetId $subnetId
+      $VirtualMachine = Add-AzureRmVMNetworkInterface -VM $VirtualMachine -Id $nic.Id
+      New-AzureRmVM -VM $VirtualMachine -ResourceGroupName $resourceGroupName -Location $snapshot.Location
+      az vm update --resource-group rg-corpit-dev --name win-dev-pipeline-test --set tags.Name=win-dev-pipeline-test tags.Creator=sn568 tags.Owner=sn568 tags.CostCenter=6362 tags.Application=win-dev-pipeline-test tags.ApplicationID=0 tags.Product=CorpSystems tags.Environment=Development tags.Project=CorpIt-Infrastructure tags.Criticality=minor
+    azurePowerShellVersion: 'LatestVersion'
