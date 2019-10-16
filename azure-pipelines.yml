@@ -4,7 +4,9 @@
 # https://aka.ms/yaml
 
 pool:
-  name: 'win1803' 
+  vmImage: "win1803"
+
+container: win1803
 
 steps: 
 
